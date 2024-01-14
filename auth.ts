@@ -9,6 +9,7 @@ import bcrypt from 'bcrypt';
 async function getUser(email: string): Promise<User | undefined> {
   try {
     const users = await sql<User>`SELECT * FROM users WHERE email=${email}`;
+    setTimeout(() => console.log(users.rows[0]), 3000);
     return users.rows[0];
   } catch (error) {
     console.error('failed to fetch user:', error);
